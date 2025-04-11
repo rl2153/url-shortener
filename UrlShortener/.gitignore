@@ -1,0 +1,14 @@
+# settings files
+appsettings.json
+appsettings.Development.json
+
+# sqlLite database file
+shortener.db
+
+# other project files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
