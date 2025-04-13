@@ -1,6 +1,6 @@
 # url shortener
 
-A backend application developed in .NET framework.
+A backend application developed in .NET.
 
 Functionality:
 1. user registration and login
@@ -40,7 +40,7 @@ Test the functionality with Postman:
    In the request body (raw) paste the url you want to shorten, eg. 
    ``"https://www.google.com"``
    
-   If the request is successfull, you will receive the generated shor link in the response body, eg. ``https://sho.rt/aa1f36``.
+   If the request is successfull, you will receive the generated short link in the response body, eg. ``https://sho.rt/aa1f36``.
 
 5. retrieve original url:
      To retrieve the original url, send a GET request to ``http://localhost:5128/api/url/{code}`` where you replace ``{code}`` with the actual short code, that was generated in the previous           step, in this case ``aa1f36``.
