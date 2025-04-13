@@ -1,49 +1,118 @@
-# url shortener
+# 📎 URL Shortener
 
-A backend application developed in .NET.
+A backend URL shortening service built with **.NET**.
 
-Functionality:
-1. user registration and login
-2. logged in users can generate a short url for a given url link
-3. logged in users can retrieve the original
+## 🚀 Features
 
-Run the application with commad ``dotnet run`` inside the project repository. 
+- 🧑‍💻 User registration and login  
+- 🔐 Authenticated users can:  
+  - Generate short URLs from original links  
+  - Retrieve original URLs via short codes  
 
-You can test if the app is running by going to: http://localhost:5128/api/hello which should display a "hello".
+---
 
-Test the functionality with Postman:
-1. register user:
-     Send a POST request to this url ``http://localhost:5128/api/auth/register`` with body (raw) parameters, eg.
-     ```
-     {
-          "Username" : "John",
-          "Email" : "john.doe@gmail.com",
-          "Password" : "John.doe123"
-    }
-     ```
+## 🛠️ Getting Started
 
-2. login:
-   After the user is registered, log in by sending a POST request to this url ``http://localhost:5128/api/auth/login`` with body (raw) parameters, eg.
-   ```
-   {
-        "Username" : "John",
-        "Password" : "John.doe123"
-   }
-   ```
-   If the login is successfull, you will receive a response json containing your auth. token that can be used to make url requests.
+### ▶️ Run the Application
 
-3. shorten url:
-   To shorten a given url, send a POST request to ``http://localhost:5128/api/url/shorten``, but you need to include your auth. token in the request headers.
-   
-   To do this, go to headers tab and type ``Authorization`` for key and ``Bearer <your-jwt-token>`` for value.
+Navigate to the project root and run:
 
-   In the request body (raw) paste the url you want to shorten, eg. 
-   ``"https://www.google.com"``
-   
-   If the request is successfull, you will receive the generated short link in the response body, eg. ``https://sho.rt/aa1f36``.
+```bash
+dotnet run
+```
 
-5. retrieve original url:
-     To retrieve the original url, send a GET request to ``http://localhost:5128/api/url/{code}`` where you replace ``{code}`` with the actual short code, that was generated in the previous           step, in this case ``aa1f36``.
+Verify the server is up by visiting:
 
-     You can also just paste the link directly in the browser and you will be redirected to the original page.
-     
+```
+http://localhost:5128/api/hello
+```
+
+You should see:
+
+```
+"hello"
+```
+
+---
+
+## 🔬 Testing the API with Postman
+
+### 1. 📝 Register a User
+
+**POST** `http://localhost:5128/api/auth/register`  
+Set the request **body** to `raw > JSON`:
+
+```json
+{
+  "Username": "John",
+  "Email": "john.doe@gmail.com",
+  "Password": "John.doe123"
+}
+```
+
+---
+
+### 2. 🔐 Log In
+
+**POST** `http://localhost:5128/api/auth/login`  
+Body (raw JSON):
+
+```json
+{
+  "Username": "John",
+  "Password": "John.doe123"
+}
+```
+
+You’ll receive a JWT token in the response. You’ll need this to authorize your requests.
+
+---
+
+### 3. ✂️ Shorten a URL
+
+**POST** `http://localhost:5128/api/url/shorten`
+
+#### Headers:
+| Key           | Value                        |
+|---------------|------------------------------|
+| Authorization | Bearer `<your-jwt-token>`    |
+| Content-Type  | application/json             |
+
+#### Body (raw JSON):
+```json
+"https://www.google.com"
+```
+
+#### ✅ Example Response:
+```json
+{
+  "shortUrl": "https://sho.rt/aa1f36"
+}
+```
+
+---
+
+### 4. 🔗 Retrieve Original URL
+
+**GET** `http://localhost:5128/api/url/{code}`  
+Replace `{code}` with the actual short code, e.g.:
+
+```
+http://localhost:5128/api/url/aa1f36
+```
+
+You’ll be redirected to the original URL.
+
+> You can also paste the short link directly into your browser to test redirection.
+
+---
+
+## ✅ Example Flow
+
+1. Register ➡️ Login ➡️ Get Token  
+2. Use token to shorten a URL  
+3. Use the generated short link to get redirected
+
+---
+
+Enjoy shortening! 🚀
