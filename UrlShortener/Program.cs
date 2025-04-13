@@ -38,6 +38,14 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+// 💣 Wipe and recreate the database on every run
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureDeleted();   // Deletes the existing database
+    db.Database.EnsureCreated();   // Creates a fresh database
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 
