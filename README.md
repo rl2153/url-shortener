@@ -37,14 +37,12 @@ Test the functionality with Postman:
    
    To do this, go to headers tab and type ``Authorization`` for key and ``Bearer <your-jwt-token>`` for value.
 
-   In the request body (raw) paste the url you want to shorten, eg.
-   ```
-  "https://www.google.com"
-
-   ```
+   In the request body (raw) paste the url you want to shorten, eg. 
+   ``"https://www.google.com"``
+   
    If the request is successfull, you will receive the generated shor link in the response body, eg. ``https://sho.rt/aa1f36``.
 
-4. retrieve original url:
+5. retrieve original url:
      To retrieve the original url, send a GET request to ``http://localhost:5128/api/url/{code}`` where you replace ``{code}`` with the actual short code, that was generated in the previous           step, in this case ``aa1f36``.
 
      You can also just paste the link directly in the browser and you will be redirected to the original page.
